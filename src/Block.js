@@ -7,11 +7,10 @@ const Block = () => {
     const [hash,setHash] = useState('');
     const [number, setNumber] = useState('');
     const [loading,setLoading] = useState(true);
-    
-      
+    const wsProvider = new WsProvider('wss://rpc.polkadot.io');    
 
     const chainState = async () => {
-        const wsProvider = new WsProvider('wss://rpc.polkadot.io');
+
         const api = await ApiPromise.create({ provider: wsProvider });
         
         // Retrieve the latest header

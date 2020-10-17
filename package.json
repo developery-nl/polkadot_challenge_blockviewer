@@ -2,6 +2,7 @@
   "name": "polkabasics",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://developery-nl.github.io/polkadot_challenge_blockviewer",
   "dependencies": {
     "@polkadot/api": "^2.1.1",
     "@polkadot/react-identicon": "^0.60.1",
@@ -20,8 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "predeploy": "yarn build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

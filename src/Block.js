@@ -1,13 +1,15 @@
 import React,{useState,useEffect} from 'react';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import Spinner from './components/Spinner';
 import {StyledBlockInfo} from './styles/StyledBlockInfo';
 
 const Block = () => {
     const [hash,setHash] = useState('');
     const [number, setNumber] = useState('');
-    const [loading,setLoading] = useState(true);
+    const [parentHash,setParentHash] = useState('');
+    const [stateRoot,setStateRoot] = useState('');
+    const [extrinsicsRoot,setExtrinsicsRoot] = useState('');
     const wsProvider = new WsProvider('wss://rpc.polkadot.io');    
+ 
 
     const chainState = async () => {
 
@@ -18,18 +20,16 @@ const Block = () => {
 
         setNumber(lastHeader.number.toString());
         setHash(lastHeader.hash.toString());
-        setLoading(false);
+        setParentHash(lastHeader.parentHash.toString());
+        setStateRoot(lastHeader.stateRoot.toString());
+        setExtrinsicsRoot(lastHeader.extrinsicsRoot.toString());
+
     } 
 
     useEffect( () => {
         chainState();
     })
 
-    if (loading) {
-        return (
-            <Spinner />
-        )
-    } else {
         return (
             <StyledBlockInfo>
                 <div className='blockinfo-content'>
@@ -42,8 +42,7 @@ const Block = () => {
                 </div>
             </StyledBlockInfo>
         )
-    }
-
+ 
 }
 
 export default Block;
